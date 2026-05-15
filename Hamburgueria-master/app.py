@@ -340,9 +340,11 @@ def main(page: ft.Page):
     mapa_bebidas = {b["id_bebida"]: b["nome_bebida"] for b in lista_bebidas}
 
     def lista_pedidos(e=None):
+        print("aaaaaaaaaaaaaaaa")
         lv_pedidos.controls.clear()
 
         pedidos_venda = page.client_storage.get("pedidos_venda_atual") or []
+        print(pedidos_venda)
 
         if not pedidos_venda:
             print("Nenhum pedido para acompanhar.")
@@ -351,13 +353,14 @@ def main(page: ft.Page):
 
         for item in pedidos_venda:
 
-            venda = item.get("venda", {})
+            pedido = item.get("pedido", item)
 
-            # DETALHAMENTO
-            detalhamento = venda.get("detalhamento", "Sem descrição")
+            detalhamento = pedido.get("detalhamento", "Sem descrição")
 
-            # DATA
-            data_bruta = venda.get("data_venda", "")
+            data_bruta = pedido.get("data_pedido", "")
+
+
+
             try:
                 dt = datetime.strptime(data_bruta, "%Y-%m-%d %H:%M:%S")
                 data_formatada = dt.strftime("%d/%m/%Y - %H:%M")
@@ -369,8 +372,9 @@ def main(page: ft.Page):
             progresso = 0.33
 
             # IDs
-            lanche_id = venda.get("lanche_id")
-            bebida_id = venda.get("bebida_id")
+
+            lanche_id = pedido.get("id_lanche")
+            bebida_id = pedido.get("id_bebida")
 
             # NOME DO LANCHES / BEBIDAS
             if lanche_id:

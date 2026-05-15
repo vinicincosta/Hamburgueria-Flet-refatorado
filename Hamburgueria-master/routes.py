@@ -19,7 +19,7 @@ from datetime import datetime
 import requests
 
 # URL base da API — altere aqui para apontar para outro ambiente
-BASE_URL = "http://10.20.21.170:5000"
+BASE_URL = "http://192.168.0.71:5000"
 
 # Mapa de status numérico → texto legível para pedidos
 _STATUS_PEDIDO = {
@@ -197,14 +197,6 @@ def listar_bebidas(token: str) -> list:
 # ---------------------------------------------------------------------------
 
 def listar_pedidos(token: str) -> list:
-    """
-    Retorna a lista de pedidos ativos, com o campo status_texto resolvido.
-
-    O status numérico (0, 1, 2) é convertido para texto legível via
-    _STATUS_PEDIDO para facilitar exibição na UI sem lógica no app.py.
-
-    Retorna [] em caso de erro.
-    """
     try:
         response = requests.get(
             f"{BASE_URL}/pedidos",
@@ -212,9 +204,15 @@ def listar_pedidos(token: str) -> list:
         )
 
         if response.status_code == 200:
-            pedidos = response.json().get("pedidos", [])
+            data = response.json()
 
-            # Resolve status_texto aqui para manter UI livre de mapeamentos
+            vendas = data.get("vendas", [])
+
+            pedidos = []
+
+            for venda in vendas:
+                pedidos.extend(venda.get("pedidos", []))
+
             for p in pedidos:
                 p["status_texto"] = _STATUS_PEDIDO.get(p.get("status"), "Desconhecido")
 
@@ -226,7 +224,6 @@ def listar_pedidos(token: str) -> list:
     except Exception as e:
         print(f"Erro de conexão ao listar pedidos: {e}")
         return []
-
 
 def cadastrar_pedido_app(
     id_lanche,
