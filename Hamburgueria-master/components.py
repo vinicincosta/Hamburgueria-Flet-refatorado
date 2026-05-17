@@ -4,6 +4,8 @@ Cada função retorna um widget Flet pronto para uso.
 Nenhuma lógica de negócio aqui — apenas UI.
 """
 import flet as ft
+
+import unicodedata
 from theme import (
     BG, BG_CARD, BG_CARD2, BG_INPUT, ACCENT, ACCENT_DARK, ACCENT_LIGHT,
     BLUE, RED, GREEN, TEXT, MUTED, DIM, BORDER, BORDER_AC,
@@ -15,34 +17,54 @@ from theme import (
 # URLs de imagem do Unsplash — específicas por categoria
 IMAGENS_LANCHE = {
     "default": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80",
-    "x-burguer": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80",
-    "x-bacon": "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&q=80",
+    "xratao": "https://media.istockphoto.com/id/1389884667/pt/foto/the-juicy-lucy-stuffed-cheeseburger-with-fried-onions.jpg?s=1024x1024&w=is&k=20&c=LXXdZXIjSMsf4KX3BKugiReonXQbYQVVzNYVIEa5LqA=",
+    "xbacon": "https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&q=80",
     "frango": "https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80",
-    "vegano": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
+    "xsalada": "https://images.unsplash.com/photo-1520072959219-c595dc870360?w=400&q=80",
+    "x egg": "https://media.istockphoto.com/id/481467452/pt/foto/homemmade-bacon-hamb%C3%BArguer-com-ovo.jpg?s=2048x2048&w=is&k=20&c=KxzWTfnkAY82lOvBAJUXtCRte8B257rc9TB7vPvpP_s="
+
 }
 
 IMAGENS_BEBIDA = {
     "default": "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80",
     "coca": "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&q=80",
-    "suco": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
-    "agua": "https://images.unsplash.com/photo-1548839140-29a749e1cf4d?w=400&q=80",
-    "cerveja": "https://images.unsplash.com/photo-1535958636474-b021ee887b13?w=400&q=80",
+    "agua de coco": "https://media.istockphoto.com/id/1626288617/pt/vetorial/coconut-milk-vector-isolated-illustration.jpg?s=2048x2048&w=is&k=20&c=Y5Kn-PpJCUGQKz799kuuNWDwSJLQNd1uV0iQTWyYEXI=",
+    "suco de laranja": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400&q=80",
+    "agua": "https://media.istockphoto.com/id/105951730/pt/foto/soda-garrafa-de-%C3%A1gua-com-r%C3%B3tulo-em-branco.jpg?s=1024x1024&w=is&k=20&c=yLTa7aGYaGN6LY8qK_bKKbUl_8RivY6rITaxqN26yoU=",
+    "guarana antartica": "https://www.guaranaantarctica.com.br/sites/g/files/wnfebl12341/files/styles/webp/public/paragraphs/product_size/2021-05/600.png.webp?itok=loxgccm7",
+    "fanta laranja": "https://media.istockphoto.com/id/120930202/pt/foto/soda-de-laranja-bebidas-em-metal-pode.jpg?s=2048x2048&w=is&k=20&c=Uw81yg3RMmoCO6ZMbYR9JRhE6EiFB0ls4MccDuVHlts=",
+    "sprite": "https://media.istockphoto.com/id/120701594/pt/foto/limonada-com-g%C3%A1s-bebidas-em-metal-pode.jpg?s=2048x2048&w=is&k=20&c=pSWjkK5WkX_l-1gYPjyv5ucQl-OxQkvSZlGy-CoJvPM=",
+    "suco de uva": "https://media.istockphoto.com/id/649137514/pt/foto/black-grape-juice-brick-juice.jpg?s=1024x1024&w=is&k=20&c=0NJ0lMRfYD5dn2FVDviZlTnxPEaAuWbEkSjhU6JlgUQ=",
+    "fanta uva": "https://media.istockphoto.com/id/898779730/pt/vetorial/soda-can.jpg?s=2048x2048&w=is&k=20&c=jxJ2u4XtIJsA5JqmKqKtX3J7mG47y0acKGekRnet230=",
+    "tubaina": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmmL0L9GUT_pGd3RpmHqqPl_SRs-eDah1k6g&s"
+
 }
 
 
+def normalizar(texto: str) -> str:
+    texto = texto.lower().strip()
+    texto = unicodedata.normalize("NFD", texto)
+    texto = "".join(c for c in texto if unicodedata.category(c) != "Mn")
+    texto = texto.replace("-", " ")
+    return texto
+
 def _get_img_lanche(nome: str) -> str:
-    nome_l = nome.lower()
+    nome_l = normalizar(nome)
+
     for k, v in IMAGENS_LANCHE.items():
         if k in nome_l:
             return v
+
     return IMAGENS_LANCHE["default"]
 
 
 def _get_img_bebida(nome: str) -> str:
-    nome_l = nome.lower()
+    nome_l = normalizar(nome)
+
     for k, v in IMAGENS_BEBIDA.items():
         if k in nome_l:
             return v
+
     return IMAGENS_BEBIDA["default"]
 
 
