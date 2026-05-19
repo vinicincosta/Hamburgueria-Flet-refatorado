@@ -69,7 +69,7 @@ O sistema é composto por três módulos principais:
 
 ---
 
-### 📦 Controle de estoque inteligente
+###  Controle de estoque inteligente
 - Entrada de insumos com registro detalhado  
 - Controle de quantidade e valores  
 - Associação com notas fiscais  
@@ -77,7 +77,7 @@ O sistema é composto por três módulos principais:
 
 ---
 
-### 🍔 Sistema Lanche × Insumo
+### Sistema Lanche × Insumo
 Cada lanche é vinculado aos seus ingredientes, permitindo:
 
 - Baixa automática de estoque  
@@ -87,7 +87,7 @@ Cada lanche é vinculado aos seus ingredientes, permitindo:
 
 ---
 
-### 📝 Personalização de pedidos
+###  Personalização de pedidos
 O cliente pode personalizar pedidos no app:
 
 - Remover ingredientes  
@@ -98,34 +98,34 @@ Essas alterações impactam diretamente o estoque em tempo real.
 
 ---
 
-### 📉 Controle de disponibilidade
+### Controle de disponibilidade
 - Manual (administrador)  
 - Automático (baseado em estoque)  
 
 ---
 
-### 🍳 Status de pedidos
+###  Status de pedidos
 - ⏳ Aguardando  
 - 🔥 Em preparo  
 - ✅ Finalizado  
 
 ---
 
-### 📊 Dashboard administrativo
+### Dashboard administrativo
 - Gráficos de vendas  
 - Indicadores operacionais  
 - Controle de pedidos e fluxo do sistema  
 
 ---
 
-### 🔄 Integração total
+### Integração total
 - Delivery  
 - Atendimento presencial  
 - Retirada (balcão)  
 
 ---
 
-## 💡 Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Python  
 - Flet  
@@ -135,7 +135,7 @@ Essas alterações impactam diretamente o estoque em tempo real.
 
 ---
 
-## 📈 Aprendizados
+## Aprendizados
 
 - Regras de negócio reais  
 - Integração entre sistemas  
@@ -162,14 +162,6 @@ Ele saiu de um projeto acadêmico e se transformou em um sistema próximo de um 
 
 ---
 
-## 📬 Contato
-
-Se quiser trocar ideia sobre o projeto ou tecnologia:
-
-- GitHub: [seu usuário]
-- LinkedIn: [seu link]
-
----
 
 ⭐ Se este projeto te ajudou ou te interessou, deixe uma estrela no repositório!
 
