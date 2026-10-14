@@ -1,4 +1,4 @@
-# 🚀 Sistema de Gerenciamento para Hamburgueria (Flet)
+# 🚀 Sistema de Gerenciamento para Hamburgueria
 IMAGENS
 <img width="450" height="775" alt="Captura de tela 2026-03-19 195846" src="https://github.com/user-attachments/assets/7c5cf628-7dbc-432f-b929-9ce83963ff2d" />
 <img width="443" height="776" alt="Captura de tela 2026-03-19 195812" src="https://github.com/user-attachments/assets/27f05c22-6c1d-4167-b4b0-8101d2f2cafb" />
